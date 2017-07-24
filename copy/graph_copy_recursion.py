@@ -2,7 +2,7 @@
 
 """
 To avoid problems with duplicating recursive data structures, 
-eepcopy() uses a dictionary to track objects that have already 
+deepcopy() uses a dictionary to track objects that have already 
 been copied. This dictionary is passed to 
 the __deepcopy__() method so it can be examined there as well.
 
@@ -12,11 +12,11 @@ import copy
 
 
 class Graph:
-    def __init__(self,name,connections=[]):
-        self.name=name
+    def __init__(self, name, connections=[]):
+        self.name = name
         self.connections = connections
 
-    def add_connection(self,other):
+    def add_connection(self, other):
         self.connections.append(other)
 
     def __repr__(self):
