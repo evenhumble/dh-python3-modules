@@ -5,14 +5,14 @@ def copy(args={}):
         print("{key}={value}".format(key=kwarg, value=v))
 
 
-def test(args={}):
+def print_kv(args={}):
     for kwarg, v in args.items():
         print("{key}={value}".format(key=kwarg, value=v))
 
 
 module_mapping = {
     "copy": copy,
-    "test": test
+    "test": print_kv
 }
 
 

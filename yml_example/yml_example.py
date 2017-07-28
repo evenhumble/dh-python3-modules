@@ -2,7 +2,6 @@
 ## http://pyyaml.org/wiki/PyYAMLDocumentation
 ## pip install pyaml
 
-from collections import OrderedDict
 
 import yaml
 
