@@ -18,12 +18,24 @@ import yaml
 #
 #
 # yaml.add_representer(OrderedDict, represent_ordereddict)
+print(yaml.load("""
+name: Vorlin Laruknuzum
+sex: Male
+class: Priest
+title: Acolyte
+hp: [32, 71]
+sp: [1, 13]
+gold: 423
+inventory:
+- a Holy Book of Prayers (Words of Wisdom)
+- an Azure Potion of Cure Light Wounds
+- a Silver Wand of Wonder
+"""))
 
 with open('yml_sample.yml', 'r') as f:
     result = yaml.load(f)
     print(result)
     print(type(result))
-    result['yaml_key1'] = 'yaml_value_changed'
 
 with open('yml_dump.yml', 'w') as f:
     yaml.dump(result, f, allow_unicode=True, default_flow_style=False)

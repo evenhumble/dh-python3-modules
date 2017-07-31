@@ -77,7 +77,7 @@ class Person:
         self.name = name
 
     def __repr__(self):
-        return "{'name':{}}".format(self.name)
+        return "{{'name':'{}'}}".format(self.name)
 ```
 
 - dumps Person instance
@@ -123,4 +123,45 @@ encoding Person: {"__class__": "Person", "__module__": "__main__", "name": "patr
 
 - loads
 
-loads实际是dumps的相反过程，
+loads实际是dumps的相反过程，定一个dict to object 方法就可以，使用方法如下：
+
+```python
+
+## module name is json_adv, 同时Person 类在json_adv 文件中
+def dict_to_object(d):
+    if '__class__' in d:
+        class_name = d.pop('__class__')
+        module_name = d.pop('__module__')
+        module = __import__(module_name)
+        print('MODULE:', module.__name__)
+        class_ = getattr(module, class_name)
+        print('CLASS:', class_)
+        args = {
+            key: value
+            for key, value in d.items()
+        }
+        print('INSTANCE ARGS:', args)
+        inst = class_(**args)
+    else:
+        inst = d
+    return inst
+
+
+encoded_object = '''
+    [{"name": "instance value goes here",
+      "__module__": "json_adv", "__class__": "Person"}]
+    '''
+
+myobj_instance = json.loads(
+    encoded_object,
+    object_hook=dict_to_object,
+)
+print(myobj_instance)
+
+```
+
+结果：
+
+```python
+[{'name':'instance value goes here'}]
+```

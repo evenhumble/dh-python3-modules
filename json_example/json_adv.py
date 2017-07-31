@@ -9,8 +9,7 @@ class Person:
         self.name = name
 
     def __repr__(self):
-        return "{'name':{}}".format(self.name)
-
+        return "{{'name':'{}'}}".format(self.name)
 
 p = Person("patrick")
 try:
@@ -32,8 +31,6 @@ print("encoding Person:", json.dumps(p, default=custom_converter))
 
 
 # Encoder,Decoder
-import json
-
 
 def dict_to_object(d):
     if '__class__' in d:
