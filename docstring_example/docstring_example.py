@@ -2,6 +2,7 @@
 this is class for demo docstring
 """
 
+
 def doc_function():
     """
     this is doc function method
@@ -9,7 +10,8 @@ def doc_function():
     """
     pass
 
-def doc_function_args(arg1,dict1={},list1=[]):
+
+def doc_function_args(arg1, dict1={}, list1=[]):
     """
     this is for function docs
     :param arg1: 
