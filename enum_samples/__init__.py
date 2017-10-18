@@ -43,10 +43,10 @@ BugStatusP = enum.Enum(
 for status in BugStatusP:
     print("{:15}={}".format(status.name, status.value))
 
+
 # complex value
 
 class BugStatusC(enum.Enum):
-
     new = {
         'num': 7,
         'transitions': [
@@ -87,6 +87,7 @@ class BugStatusC(enum.Enum):
 
     def can_transition(self, new_state):
         return new_state.name in self.transitions
+
 
 print('Name:', BugStatusC.in_progress)
 print('Value:', BugStatusC.in_progress.value)

@@ -14,7 +14,6 @@ print('Right end:', d[-1])
 d.remove('c')
 print('remove(c):', d)
 d.append("h")
-
 print("append h into right:", d)
 
 d.extendleft(range(5))
@@ -23,7 +22,7 @@ print(d)
 d2 = collections.deque(d)
 print(d2)
 print(d2 is d)
-## pop, from end to top, vise popleft from top to end
+print("pop, from end to top, vise popleft from top to end")
 while True:
     try:
         print(d.pop(), end="\n")
@@ -31,13 +30,14 @@ while True:
         break
 print(d)
 
+print("popleft from top to end")
 while True:
     try:
         print(d2.popleft(), end="\n")
     except IndexError:
         break
 print(d2)
-
+print("end of pop, from end to top, vise popleft from top to end")
 # deque is thread-safe
 candle = collections.deque(range(5))
 
