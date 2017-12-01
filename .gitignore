@@ -762,3 +762,4 @@ ENV/
 
 # Rope project settings
 .ropeproject
+/csv_example/__init__.py
