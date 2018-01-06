@@ -10,4 +10,5 @@
 
 ## 5. return exception not None
 
-## 6. 
+## 6. 使用None和文档说明参数
+## 7. Function over Class if it is simple
