@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 from itertools import islice
 
+
 # todo understand generator
 def index_words(text):
     result = []
@@ -36,10 +37,18 @@ with open('address.txt', 'r') as f:
     results = islice(it, 0, 3)
     print(list(results))
 
-def yield_demo():
-    print("this is yield demo")
-    yield "text"
+nested = [[1, 2], [3, 4], [6, 7]]
 
-yield_demo()
-print("this is test")
+
+# simple generator demo
+def flatten(nested):
+    for sublist in nested:
+        for element in sublist:
+            yield element  ## stop here to return to do something
+
+
+for item in flatten(nested):
+    print(item)
+
+## eight queen problem
 
