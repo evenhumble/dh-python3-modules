@@ -36,7 +36,7 @@ class email_server:
             server.sendmail(self.form_msg, self.user_email, msg.as_string())
             server.close()
             return True
-        except Exception as  error:
+        except Exception as error:
             print(str(error))
             return False
 
