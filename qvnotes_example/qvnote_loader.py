@@ -13,12 +13,6 @@ QV_NB_META = "meta.json"
 QV_NB_CONTENT = "content.json"
 
 
-# for root,directory,file in os.walk(QV_NOTE_LOCATION):
-#     print(root)
-#     print(directory)
-#     print(file)
-
-
 def get_all_nv_nb_folders():
     # result = []
     # for item in os.listdir(QV_NOTE_LOCATION):
