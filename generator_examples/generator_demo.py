@@ -26,6 +26,6 @@ while 1:
     try:
       x=next(g)
       print("g:",x)
-    except StopInteration as e:
+    except StopIteration as e:
         print("done!")
         break

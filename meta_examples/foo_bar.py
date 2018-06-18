@@ -5,6 +5,7 @@ class FooBar(object):
     def __init__(self):
         self.var1 = "var1"
 
+print(FooBar.__mro__)
 
 # DYNAMISM we can not be sure of what members
 # an instance will have at any given time
