@@ -53,3 +53,8 @@ if __name__ == '__main__':
     dup = copy.deepcopy(root)
     print(root)
     print(dup)
+
+    dup_1 = copy.copy(root)
+    print("copied dup_1")
+    print(root)
+    print(dup_1)
