@@ -3,6 +3,9 @@ import sys
 
 from confluent_kafka import Consumer, KafkaException, KafkaError
 
+from kafka_example.httptraffic_mysql_sinker import save_http_traffic
+from kafka_example.httptraffic_parser import HttpTraffic
+
 conf = {
     'bootstrap.servers': '10.8.1.43:9092',
     'group.id': "httptraffic-consumer",
@@ -16,7 +19,7 @@ conf = {
 topics = ['test']
 
 
-def consume_msg():
+def consume_kafka_http_traffic():
     c = Consumer(**conf)
     c.subscribe(topics)
     try:
@@ -25,27 +28,25 @@ def consume_msg():
             if msg is None:
                 continue
             if msg.error():
-                # Error or event
                 if msg.error().code() == KafkaError._PARTITION_EOF:
-                    # End of partition event
                     sys.stderr.write('%% %s [%d] reached end at offset %d\n' %
                                      (msg.topic(), msg.partition(), msg.offset()))
                 elif msg.error():
-                    # Error
                     raise KafkaException(msg.error())
             else:
-                # Proper message
                 sys.stderr.write('%% %s [%d] at offset %d with key %s:\n' %
                                  (msg.topic(), msg.partition(), msg.offset(),
                                   str(msg.key())))
-                print(msg.value().decode('utf-8'))
-
+                try:
+                    http_traffic = HttpTraffic()
+                    http_traffic.parse_kafka_msg(msg.value().decode('utf-8'))
+                    save_http_traffic(http_traffic)
+                except Exception as e:
+                    print(e)
     except KeyboardInterrupt:
         sys.stderr.write('%% Aborted by user\n')
-
-    # Close down consumer to commit final offsets.
     c.close()
 
 
 if __name__ == '__main__':
-    consume_msg()
+    consume_kafka_http_traffic()
